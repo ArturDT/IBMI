@@ -1,0 +1,19 @@
+000100171005     A*********************************************************************
+000101171005     A* Dane1    : TEST ERROR LOG
+000102171005     A* Autor    : Artur Dobrzanski
+000103171005     A* Data     : 2017.10.05
+000104171005     A* Projekt  : TEST
+000105171005     A*********************************************************************
+000106171005     A**************************** Change Log *************************
+000107171005     A*   Project ID  Pgmr   Date     Project Description
+000108171005     A*****************************************************************
+000109171005     A*   XXXXXX      XXXX XXXXXXXXXX XXXXXXXXXXXXXXXXXXX
+000110171005     A*****************************************************************
+000111171006     A          R ERROR
+000112171006     A            ID_ERROR      10S 0       TEXT('ID_of_Error')
+000113171005     A            TIME            Z         TEXT('Time_Of_Error')
+000115171005     A            ERROR_PGM     10A         TEXT('Program_Error')
+000117171005     A            ERROR_TYPE     6A         TEXT('Type_of_Error')
+000118171005     A            ERROR_INFO   120A         TEXT('More_info_about_Error')
+000119171006     A          K ID_ERROR
+000120171006
