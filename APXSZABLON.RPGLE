@@ -1,5 +1,5 @@
 000100160728      *********************************************************************************************
-000200161028      *? APXSZABLON Us硊ga szablonowa dla powerExt                                               ?*
+000200161028      *? APXSZABLON Us艂uga szablonowa dla powerExt                                               ?*
 000300160804      * ?Autor   : Artur Dobrzanski                                                              ?*
 000400161028      * ?Data    : 2016.10.28                                                                    ?*
 000500161028      * ?Projekt : NPXXXX                                                                        ?*
@@ -9,7 +9,7 @@
 000900160728      *********************************************************************************************
 001700160728     H DEBUG(*YES) OPTION(*NODEBUGIO)
 001800160728     H DATEDIT(*YMD)
-001900160728     H COPYRIGHT('Copyright BZWBK')
+001900160728     H COPYRIGHT('Artur Dobrzanski')
 002000160728
 002100160728   ?  **********************************************************************
 002200160728   ?  * copybooks                                                          *
@@ -18,9 +18,9 @@
 002500160728       /copy apxsorc,pxapihdr        General H-Spec's
 002600160728       /copy apxsorc,pxapicgicn      Basic HTTP connecter & Basic Services
 002700160728      *?Prototypy funkcji dodatkowych:
-002800160728       /copy APSSORC,APS0549P
+002800160728       /copy ADOSORC,ADO001P
 002900160728     ?**********************************************************************
-003000160728     ?* Deklaracje plik體                                                  *
+003000160728     ?* Deklaracje plik贸w                                                  *
 003100160728     ?**********************************************************************
 003200161028?    FNAZWAPLIK IF   E           K DISK    USROPN
 003300160728     ?**********************************************************************
@@ -33,7 +33,7 @@
 004001161028     D                                     Dim(cArrLen)
 004200161028     D BufErr        E DS                  extname(ANFB00102) qualified
 004300161028      *?zmienne globalne:
-004400160728     D ilZwRek         S              4S 0                                      il zwr骳onych rekord
+004400160728     D ilZwRek         S              4S 0                                      il zwr贸conych rekord
 004500160802      *?stale:
 004600161028    ?D cArrLen         C                   const(99)                            Max ilosc zwracanych
 004601161028  ?  D nazwaProg       C                   const('APXSZABLON')                  Nazwa programu
@@ -42,17 +42,17 @@
 004705161028      /COPY APXSORC,APXL001P
 004713160804
 004800160728     ?**********************************************************************
-004900160804     ?* Procedura gl體na                                                   *
+004900160804     ?* Procedura gl贸wna                                                   *
 005000160728     ?**********************************************************************
 005100160728      /free
-005200161028         if Inicjalizuj();     //?Inicjalizacja + otwarcie plik體 - w przypadku bledu zwraca *off
+005200161028         if Inicjalizuj();     //?Inicjalizacja + otwarcie plik贸w - w przypadku bledu zwraca *off
 005300160728           getInData();          //?pobranie danych xml
 005400160728           xmlToBufIn();         //?mapowanie z xml do struktury BufIn
-005500161028           if chkBufIn();        //?sprawdzanie poprawno鴆i danych wej鴆iowych - gdy blad to *off
+005500161028           if chkBufIn();        //?sprawdzanie poprawno艡ci danych wej艡ciowych - gdy blad to *off
 005600160728             biznesLogic();        //?logika biznesowa (na podstawie BufIn generuje Bufout)
 005700160728             BufOutToXml();        //?mapowanie ze struktury BufOut do xml
 005800160728           else;
-005900161028             ErrorToXml();         //?zwr箧 komunikat bledu
+005900161028             ErrorToXml();         //?zwr贸膰 komunikat bledu
 006000160728           endif;
 006100160728         else;
 006200160728           ErrorToXml();
@@ -82,8 +82,8 @@
 008800160728
 008900160728     ?* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 009000160728     ?*?  FUNKCJA    -   Inicjalizuj                                                          ?   *
-009100160728     ?*?  OPIS       -   Inicjalizacja - czyli czyszczenie zmiennych oraz otwarcie plik體     ?   *
-009200160728      *?                 W przypadku wyst豴ienia b铲du zwraca *Off                               ?*
+009100160728     ?*?  OPIS       -   Inicjalizacja - czyli czyszczenie zmiennych oraz otwarcie plik贸w     ?   *
+009200160728      *?                 W przypadku wyst艠pienia b藳暖du zwraca *Off                               ?*
 009300160728     ?* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 009400160728     P Inicjalizuj     B
 009500160728     D                 PI              N
@@ -104,7 +104,7 @@
 010400161028?        if not %open(NAZWAPLIK);                            //?warunek if-endif powielamy dla
 010500161028?          open(e) NAZWAPLIK;                                //?kazdego pliku, z ktorego usluga
 010600161028           If %error();  //?Blad otwarcia NAZWAPLIK          //?korzysta. Nalezy zmienic NAZWAPLIK
-010601161028?            Log.stage = 'b彻d otwarcia pliku NAZWAPLIK';    //?na wlasciwa nazwe pliku
+010601161028?            Log.stage = 'b艂拧d otwarcia pliku NAZWAPLIK';    //?na wlasciwa nazwe pliku
 010602161028             Log.loglvl = #warn;
 010603161028             logger(Log);
 010700161028?            BufErr.ANFERID = 'numerBledu';                  //?ID komunikatu bledu
@@ -137,7 +137,7 @@
 014900160728     P                 E
 015000160728     ?* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 015100160728     ?*?  FUNKCJA    -   xmlToBufIn                                                           ?   *
-015200160728     ?*?  OPIS       -   Pobieranie parametr體 wej鴆iowych us瞮gi i zapis do struktury BufIn  ?   *
+015200160728     ?*?  OPIS       -   Pobieranie parametr贸w wej艡ciowych us藳ugi i zapis do struktury BufIn  ?   *
 015300160728     ?* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 015400160728     P xmlToBufIn      B
 015500160728
@@ -203,6 +203,6 @@
 021800160728     P                 E
 021900160728
 022000160802?     *====================================================================================
-022100160802?     *?Procedury PowerExt - takie same dla wszystkich us瞮g PowerExt: ?                 ?*
+022100160802?     *?Procedury PowerExt - takie same dla wszystkich us藳ug PowerExt: ?                 ?*
 022200160802?     *====================================================================================
 022300160804      /copy APXSORC,APXPROCED
